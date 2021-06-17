@@ -1,3 +1,11 @@
+media/
+banners/
+prod_base_settings.py
+ya_script.js
+robots.txt
+sitemap.xml
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
