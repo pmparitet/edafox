@@ -18,7 +18,7 @@ def index(request):
     data_page = Shops.objects.get(category_page='main', is_active=True)
 
     # загружает ВСЕ активные каталоги из БД
-    catalog_active = Catalog.objects.filter(is_active=True)
+    catalog_active = Catalog.objects.filter(is_active=True).order_by('add_datetime')
 
     # вывод всех активных рецептов с отметкой о выводе на главной
     recipe_main_page = CardRecipe.objects.filter(display_main_page=True, is_active=True).order_by('add_datetime')
@@ -41,7 +41,7 @@ def shop(request, shop_name):
         shops = get_shops_menu()
 
         # получаем все активные каталоги магазина
-        card_active = Catalog.objects.filter(shop=data_page.pk, is_active=True)
+        card_active = Catalog.objects.filter(shop=data_page.pk, is_active=True).order_by('add_datetime')
 
         content = {
             'data_page': data_page,
@@ -67,7 +67,7 @@ def catalog_page(request, shop_name, catalog_name):
         picture = PictureCatalog.objects.filter(catalog__pk=data_page.pk, is_active=True).order_by('image_alt')
 
         # получаем все активные каталоги магазина
-        card_active = Catalog.objects.filter(shop=data_page.shop, is_active=True)
+        card_active = Catalog.objects.filter(shop=data_page.shop, is_active=True).order_by('add_datetime')
 
         content = {
             'shops': shops,
