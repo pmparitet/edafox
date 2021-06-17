@@ -1,0 +1,13 @@
+{% load static %}
+
+<nav aria-label="breadcrumb ">
+    <ol class="breadcrumb grey lighten-5 mb-0 pb-3">
+        <li class="breadcrumb-item"><a class="black-text " href="{% url 'main:index' %}">Главная</a></li>
+        {% if breadcrumb_shop %}
+            <li class="breadcrumb-item active">{{ data_page.title_shop }}</li>
+        {% else %}
+            <li class="breadcrumb-item"><a class="black-text " href="{% url 'main:shop' data_page.shop.name %}">{{ data_page.shop.title_shop }}</a></li>
+            <li class="breadcrumb-item active">{{ data_page.breadcrumb_title }}</li>
+        {% endif %}
+    </ol>
+</nav>

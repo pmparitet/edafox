@@ -1,0 +1,97 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% include 'main/includes/inc_header.html' %}
+
+	<main class="container ">
+		<div class="row ">
+			<!-- main-section -->
+			<section class=" content col-lg-9 ">
+                {% include 'main/banners/banner_top.html' %}
+
+				<div class="row ">
+					<!-- breadcrumb -->
+					{% include 'main/includes/inc_breadcrumb.html' %}
+				</div>
+				<div class="row">
+					<h1 class="col-12 h3">{{ data_page.h1_title }} </h1>
+					<p class="col-12 text-muted my-0">{{ data_page.muted_title }}</p>
+				</div>
+
+                <!-- Slider -->
+				<div class="row ">
+					<div class="col px-0">
+						<div class="slider ">
+							<!-- Slider main container -->
+							<div class="swiper-border ">
+								<div class="swiper-button ">
+									<div class="swiper-button-prev">
+										<i class="fas fa-chevron-left text-white "></i>
+									</div>
+									<div class="swiper-button-next">
+										<i class="fas fa-chevron-right text-white "></i>
+									</div>
+								</div>
+								<div class="swiper-container-extra ">
+									<div class="swiper-pagination "></div>
+								    <div class="swiper-wrapper">
+								        <!-- Slides -->
+										{% for pic in picture %}
+											{% if pic.image_resized %}
+												<div class="swiper-slide">
+													<div class="swiper-zoom-container">
+														<img data-src="/media/{{ pic.image_resized }}" src="#" alt="Slide {{ pic.image_alt }}" class="swiper-lazy">
+														<div class="swiper-lazy-preloader"></div>
+													</div>
+												</div>
+											{% else %}
+												<div class="swiper-slide">
+													<div class="swiper-zoom-container">
+														<img data-src="/media/{{ pic.image }}" src="#" alt="Slide {{ pic.image_alt }}" class="swiper-lazy">
+														<div class="swiper-lazy-preloader"></div>
+													</div>
+												</div>
+											{% endif %}
+										{% endfor %}
+										<!-- /Slides -->
+								    </div>
+								    <div class="swiper-pagination "></div>
+								</div>
+							<!-- /Slider main container -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Slider -->
+
+                {% include 'main/banners/banner_medium.html' %}
+
+				<hr class="mt-5">
+				<div class="row  ">
+					<div class="col">
+						<p class="h4 ">Все каталоги акций Cупермаркета {{ data_page.shop.title_shop }} сегодня:</p>
+					</div>
+				</div>
+
+                {% include 'main/includes/inc_new_actions_card.html' %}
+
+				<hr class="mt-4">
+				<article class="row">
+					<h2 class="col-12 h4">
+						{{ data_page.article_catalog.h2_title|safe }}
+					</h2>
+					<p class="col-12">
+						{{ data_page.article_catalog.article|safe }}
+					</p>
+				</article>
+				<hr class="mt-4">
+			</section>
+			<!-- /main-section -->
+
+            {% include 'main/banners/banner_left.html' %}
+		</div>
+	</main>
+
+{% endblock %}

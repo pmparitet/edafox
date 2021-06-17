@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+
+
+{% block content %}
+
+    {% include 'main/includes/inc_header.html' %}
+
+	<main class="container ">
+		<div class="row ">
+			<!-- main-section -->
+			<section class=" content col-lg-9 ">
+                {% include 'main/banners/banner_top.html' %}
+				<article class="row mt-4 mb-3">
+					<h1 class="col-12 h3 mb-3">{{ data_page.h1_title }}</h1>
+					{{ data_page.article_catalog.article|safe }}
+				</article>
+				<hr class="mt-3">
+                {% include 'main/includes/inc_slider_all_actions.html' %}
+				<hr class="mt-3">
+				{% include 'main/banners/banner_medium.html' %}
+
+				{% include 'main/includes/inc_recipes_in_main.html' %}
+
+				{% include 'main/includes/inc_seti_all_card.html' %}
+
+			</section>
+			<!-- /main-section -->
+
+            {% include 'main/banners/banner_left.html' %}
+		</div>
+	</main>
+
+{% endblock %}
+
+
+

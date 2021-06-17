@@ -1,0 +1,34 @@
+{% extends 'authapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <main class="container ">
+        <div class="row">
+            <section class=" content col-lg-9 mb-3">
+                <div class="row mt-4 mb-3">
+                    <div class="h2 text-center head">Редактирование профиля</div>
+                </div>
+                <div class="row row-cols-1 row-cols-md-2">
+                    <div class="col">
+                            <div class="user_avatar " ><img src="/media/{{ user.avatar }}" width="200" height="250"></div>
+                    </div>
+                    <section class="col">
+                        <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ edit_form.as_p }}
+                            <input class="form-control" type="submit" value="сохранить">
+                        </form>
+                        <button class="btn btn-round form-control last">
+                            <a href="{% url 'auth:change_password' %}" class="">Смена пароля</a>
+                        </button>
+                        <button class="btn btn-round form-control last">
+                            <a href="{% url 'main:index' %}" class="">на главную</a>
+                        </button>
+                    </section>
+                </div>
+                <hr class="mt-4">
+            </section>
+        </div>
+	</main>
+{% endblock %}

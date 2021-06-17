@@ -1,0 +1,81 @@
+{% extends 'kitchenapp/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+    {% include 'kitchenapp/includes/inc_header.html' %}
+	<main class="container ">
+		<div class="row ">
+			<!-- main-section -->
+			<section class="content col-lg-9 ">
+
+<!--	!!! проверить переменные !!!	-->
+				{% include 'main/banners/banner_top.html' %}
+<!--	!!! проверить переменные !!!	-->
+
+				<div class="row ">
+					{% include 'kitchenapp/includes/inc_breadcrumb.html' %}
+				</div>
+				<article class="row mb-3 ">
+					<h1 class="col-12 h3 mb-3">
+						{{ data_page.h1_title }}
+					</h1>
+				<!--		фото			-->
+					<div class="col-12 mb-5 step-img-logo">
+						<div class="intrinsic-placeholder ">
+							<img class="img-fluid z-depth-1 recipe-img intrinsic-placeholder-item"
+								 src="/media/{{ data_page.main_image }}"
+								 alt="{{ data_page.main_image_alt_a_title }}"
+								 title="{{ data_page.main_image_alt_a_title }}">
+						</div>
+					</div>
+				<!--		ингридиенты			-->
+					<section class="col-12 col-md-4 px-0">
+						<p class="col-12 h6">ИНГРЕДИЕНТЫ</p>
+						<ul class="">
+							{{ data_page.ingredients|safe }}
+						</ul>
+						<p class="col-12 "> <b>Время приготовления:</b> {{ data_page.time_work }}</p>
+						<p class="col-12 "> <b>Количество порций:</b> {{ data_page.portions }}</p>
+					</section>
+
+				<!--		описание			-->
+					<section class="col-12 col-md-8 px-0">
+						<div class="col-12">
+							{{ data_page.introduction_description|safe }}
+							<hr class="mt-3">
+						</div>
+
+				<!--		Шаги приготовления			-->
+						<h2 class="instructions-title col-12 h6">
+							ПОШАГОВЫЙ РЕЦЕПТ ПРИГОТОВЛЕНИЯ
+						</h2>
+						{% for one_step in articles_recipes %}
+							<div class="col-12 step">
+								<div class="step-title">Шаг {{ one_step.step }}</div>
+								<div class=" step-img intrinsic-placeholder">
+									<img class="img-fluid lazy recipe-img intrinsic-placeholder-item"
+										 data-src="/media/{{ one_step.step_image }}"
+										 alt="{{ one_step.step_image_alt_a_title }}"
+										 title="{{ one_step.step_image_alt_a_title }}">
+								</div>
+								<p class="step-text">
+									{{ one_step.step_description|safe }}
+								</p>
+								<hr class="mt-3">
+							</div>
+						{% endfor %}
+					</section>
+				</article>
+
+                {% include 'main/banners/banner_medium.html' %}
+
+			</section>
+			<!-- /main-section -->
+
+            {% include 'main/banners/banner_left.html' %}
+		</div>
+	</main>
+
+{% endblock %}

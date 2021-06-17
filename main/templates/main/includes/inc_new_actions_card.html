@@ -1,0 +1,26 @@
+{% load static %}
+
+				<section class="row row-cols-2 row-cols-md-3 mb-3">
+					{% for card in card_active %}
+						<!-- Card -->
+						<div class="col my-2 px-2">
+							<div class="card card-catalog ">
+								<div class="view ">
+									<img class="card-img-top lazy"
+										 data-src="/media/{{ card.image_preview }}"
+										 alt="{{ card.card_image_alt_a_title }}">
+								</div>
+								<div class="card-body ">
+									<h5 class="black-text mb-1">{{ card.card_title }}</h5>
+									<p class="card-text mb-1">{{ card.card_date }}</p>
+									<div class="text-center">
+										<a class="card-link stretched-link" href="{% url 'main:catalog_page' card.shop.name card.name %}"
+										   title="{{ card.card_image_alt_a_title }}"></a>
+										<button type="button" class=" card-link btn btn-dark-green  rounded-pill btn-sm waves-effect ">Показать акции</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+                </section>
+

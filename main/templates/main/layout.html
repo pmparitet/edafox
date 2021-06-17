@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="icon" type="image/png" sizes="120x120" href="{% static 'favicon.png' %}">
+	<link rel="preload" as="script" href="https://mc.yandex.ru/metrika/tag.js">
+	<link href="{% static 'css/fonts.css' %}" rel="stylesheet">
+	<link href="{% static 'css/libraries/fontawesome-all.css' %}" rel="stylesheet">
+	<link href="{% static 'css/libraries/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/libraries/mdb.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/libraries/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main_style.css' %}" rel="stylesheet">
+	<script type="text/javascript" >
+	   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+	   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+	   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+	   ym(69855739, "init", {
+			clickmap:true,
+			trackLinks:true,
+			accurateTrackBounce:true,
+			trackHash:true
+	   });
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/69855739" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-MY1R1HVG22"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	  gtag('config', 'G-MY1R1HVG22');
+	</script>
+	<title>{{ data_page.meta_title }}</title>
+	<meta name="description" content= '{{ data_page.meta_description }}' >
+	<meta property="og:title" content= '{{ data_page.meta_title }}' >
+	<meta property="og:description" content= '{{ data_page.meta_description }}' >
+	<meta property="og:image" content= 'https://edafox.ru/media/{{ data_page.image_preview }}' >
+	<meta property="og:locale" content="ru_RU">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content= 'https://edafox.ru{{ request.path }}' >
+	<meta property="og:site_name" content="Свежие скидки и акции супермаркетов | edaFox">
+	<meta name="yandex-verification" content="5059f42cb822c919" />
+	<link rel="canonical" href="https://edafox.ru{{ request.path }}"/>
+</head>
+<body class="grey lighten-5">
+
+
+	{% block content %}
+    {% endblock %}
+
+	<!-- Footer -->
+	<footer class="page-footer font-small success-color-dark ">
+		<div class="footer-copyright text-center py-2 ">
+			<div class="container">
+				<div class="row">
+					<span class="col-12 small ">
+						Сайт «ЕдаФокс» — является информационным ресурсом. Вся размещенная информация получена из открытых источников и носит исключительно справочно-информационный характер. Материалы сайта не являются рекламой, публичной офертой или призывом к действию и предназначены для лиц старше 18 лет.
+					</span>
+					<div class="col-12 pt-2">
+						<span class=" ">	© 2020-2021 Copyright: <a href="https://edafox.ru/"> edafox.ru </a></span>
+						<noindex>
+							<a href="https://www.liveinternet.ru/click" rel="nofollow noreferrer" target="_blank" ><img src="https://counter.yadro.ru/logo?41.15"
+							title="LiveInternet" alt="" style="border:0" width="21" height="21"/>
+							</a>
+						</noindex>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- Footer -->
+
+	<div class="switch-version">
+		<div class="ya-share2 d-block d-md-none" data-curtain data-shape="round" data-size="l" data-limit="0" data-more-button-type="short" data-popup-direction="top" data-services="whatsapp,facebook,vkontakte,telegram,odnoklassniki,twitter,viber,linkedin,lj"></div>
+		<div class="ya-share2 d-none d-md-block" data-curtain data-size="l" data-limit="6" data-more-button-type="short" data-popup-direction="top"  data-services="facebook,vkontakte,telegram,whatsapp,odnoklassniki,twitter,viber,linkedin,lj"></div>
+	</div>
+
+	<script type="text/javascript" src="{% static 'js/libraries/jquery.min.js' %}"></script>
+	<script defer type="text/javascript" src="{% static 'js/libraries/popper.min.js' %}"></script>
+	<script defer type="text/javascript" src="{% static 'js/libraries/bootstrap.min.js' %}"></script>
+	<script defer type="text/javascript" src="{% static 'js/libraries/mdb.min.js' %}"></script>
+	<script defer type="text/javascript" src="{% static 'js/libraries/swiper-bundle.min.js' %}"></script>
+	<script defer type="text/javascript" src="{% static 'js/main_script.js' %}"></script>
+	<script defer type="text/javascript" src="{% static 'js/ya_script.js' %}"></script>
+	<script defer type="text/javascript" src="https://yastatic.net/share2/share.js"></script>
+	<script async type="text/javascript" src="{% static 'js/counter.js' %}"></script>
+
+</body>
+</html>

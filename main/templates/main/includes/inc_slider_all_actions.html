@@ -1,0 +1,49 @@
+{% load static %}
+				<!-- Slider -->
+				<div class="row ">
+					<div class="col px-2">
+						<div class="slider ">
+							<!-- Slider main container -->
+							<div class="swiper-border ">
+								<div class="swiper-button ">
+								    <div class="swiper-button-prev ">
+								    	<i class="fas fa-chevron-left text-white "></i>
+								    </div>
+								    <div class="swiper-button-next">
+								    	<i class="fas fa-chevron-right text-white "></i>
+								    </div>
+								</div>
+								<div class="swiper-container-main ">
+								    <div class="swiper-wrapper">
+										{% for one_catalog in catalog_active %}
+											<!-- Card -->
+											<div class="swiper-slide">
+												<div class="card card-catalog ">
+													<div class="view overlay ">
+														<img class="card-img-top swiper-lazy "
+															 data-src="/media/{{ one_catalog.image_preview }}"
+														alt="{{ one_catalog.card_image_alt_a_title }}">
+														<div class="mask rgba-white-slight "></div>
+													</div>
+													<div class="seti-logo">
+														<img class="seti-img" src="/media/{{ one_catalog.shop.image_logo }}"
+														alt="{{ one_catalog.shop.alt_shop }}">
+													</div>
+													<div class="card-body text-left">
+														<a href="{% url 'main:catalog_page' one_catalog.shop.name one_catalog.name %}" class=" card-link stretched-link"
+														   title="{{ one_catalog.card_image_alt_a_title }}"></a>
+														<strong class="card-title black-text mb-1">{{ one_catalog.card_title }}</strong>
+														<p class="card-text">{{ one_catalog.card_date }}</p>
+													</div>
+												</div>
+											</div>
+										{% endfor %}
+								    </div>
+								    <div class="swiper-pagination"></div>
+								</div>
+							</div>
+							<!-- /Slider main container -->
+						</div>
+					</div>
+				</div>
+				<!-- /Slider -->

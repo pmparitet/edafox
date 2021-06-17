@@ -1,0 +1,48 @@
+{% load static %}
+				<article class="row mb-3 ">
+					<h2 class="col-12 h3 mb-3">
+						Сборник пошаговых рецептов
+					</h2>
+				</article>
+                <section class="row row-cols-1 row-cols-md-3 row-cols-lg-2 row-cols-xl-3 mb-3">
+
+                    {% for one_recipe in recipe_main_page %}
+                        <!-- Recipes Card -->
+                        <article class="col mb-4 recipe-article ">
+                            <div class="card recipe-card">
+                                <!--Card image-->
+                                <div class="view overlay recipe-card-img intrinsic-placeholder">
+                                    <img class="card-img-top lazy intrinsic-placeholder-item "
+                                             data-src="/media/{{ one_recipe.image_preview }}"
+                                             alt="{{ one_recipe.card_image_alt_a_title }}"
+                                             title="{{ one_recipe.card_image_alt_a_title }}">
+                                    <a href="{% url 'kitchen:recipes' one_recipe.recipe.name %}">
+                                        <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <!--Card content-->
+                                <div class="card-body">
+                                    <!--Title-->
+                                    <a class="card-link recipe-card-link" href="{% url 'kitchen:recipes' one_recipe.recipe.name %}">
+                                        <h5 class="card-title recipe-card-title">{{ one_recipe.card_title }} <br>&nbsp;</h5>
+                                    </a>
+                                    <!--Text-->
+                                    <p class="card-text recipe-card-text ">
+                                        {{ one_recipe.card_description }}
+                                    </p>
+                                    <!-- время приготовления и порции -->
+                                    <div class="mb-2 recipe-card-icon ">
+                                        <div class="clock" title="Время приготовления">
+                                            <i class="far fa-clock"></i>
+                                            <span class="recipe-card-text" >{{ one_recipe.time_work }}</span>
+                                        </div>
+                                        <div class="user-friends" title="Кол-во порций">
+                                            <i class="fas fa-user-friends"></i>
+                                            <span class="recipe-card-text">{{ one_recipe.portions }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </section>

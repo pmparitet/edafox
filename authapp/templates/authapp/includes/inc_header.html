@@ -1,0 +1,55 @@
+{% load static %}
+
+	<header>
+		<!--Navbar-->
+		<nav class="navbar navbar-expand-md navbar-dark nav-pills success-color-dark py-1 ">
+			<div class="container ">
+				<!-- Navbar brand -->
+				<a class="navbar-brand py-0" href="{% url 'main:index' %}">
+					<img src="{% static 'Group_3.svg' %}" height="70" alt="edaFox_logo" class="d-inline-block align-center ">
+					<span class="brand-text orange-text ">edaFox</span>
+				</a>
+				<!-- Collapse button -->
+				<button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+				aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+					<div class="animated-icon1"><span></span><span></span><span></span></div>
+				</button>
+				<!-- Collapsible content -->
+				<div class="collapse navbar-collapse " id="basicExampleNav">
+					<!-- Links -->
+					<ul class="navbar-nav  mr-auto">
+						<!-- Button Shops -->
+						{% for one_shop in shops %}
+							{% if one_shop.is_menu %}
+								<a type="button" class="btn btn-dark-green btn-sm text-capitalize text-btn-big"
+								   href="{% url 'main:shop' one_shop.name %}">
+									{{ one_shop.title_shop }}
+								</a>
+							{% endif %}
+						{% endfor %}
+						<!-- Button kitchenapp -->
+						<a type="button" class="btn btn-dark-green btn-sm text-capitalize text-btn-big"
+						   href="{% url 'kitchen:recipes_all' %}">Рецепты</a>
+						<!-- Button -->
+						{% if user.is_authenticated %}
+							<a type="button" class="btn btn-dark-green btn-sm text-capitalize text-btn-big"
+							   href="{% url 'auth:edit' %}">
+								{{ user.first_name|default:'Пользователь' }}
+							</a>
+						{% endif %}
+						<!-- Button -->
+						{% if user.is_authenticated %}
+							<a type="button" class="btn btn-dark-green btn-sm text-capitalize text-btn-big"
+							   href="{% url 'auth:logout' %}">Выйти</a>
+						{% else %}
+							<a type="button" class="btn btn-dark-green btn-sm text-capitalize text-btn-big"
+							   href="{% url 'auth:login' %}">Войти</a>
+						{% endif %}
+					</ul>
+				</div>
+				<!-- Collapsible content -->
+			</div>
+		</nav>
+		<!--/.Navbar-->
+		<div class="container mt-2"></div>
+	</header>

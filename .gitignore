@@ -1,9 +1,11 @@
 media/
 banners/
+*_initial.py
 prod_base_settings.py
 ya_script.js
 robots.txt
 sitemap.xml
+db.json
 
 
 # Byte-compiled / optimized / DLL files
