@@ -29,7 +29,7 @@ def recipes(request, recipe_name):
 
 def recipes_all(request):
     # вывод всех активных рецептов
-    data_page = CardRecipe.objects.filter(is_active=True).order_by('add_datetime')
+    data_page = CardRecipe.objects.filter(is_active=True).order_by('-pk')
 
     # загружает магазины для меню
     shops = get_shops_menu()

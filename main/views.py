@@ -7,7 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def get_shops_menu():
     # загружает магазины для меню
-    shops = Shops.objects.filter(is_active=True, category_page='shop')
+    shops = Shops.objects.filter(is_active=True, category_page='shop').order_by('pk')
     return shops
 
 
@@ -19,10 +19,10 @@ def index(request):
     data_page = Shops.objects.get(category_page='main', is_active=True)
 
     # загружает ВСЕ активные каталоги из БД
-    catalog_active = Catalog.objects.filter(is_active=True, display_main_page=True, shop__is_active=True).order_by('-add_datetime')
+    catalog_active = Catalog.objects.filter(is_active=True, display_main_page=True, shop__is_active=True).order_by('-pk')
 
     # вывод всех активных рецептов с отметкой о выводе на главной
-    recipe_main_page = CardRecipe.objects.filter(display_main_page=True, is_active=True).order_by('-add_datetime')
+    recipe_main_page = CardRecipe.objects.filter(display_main_page=True, is_active=True).order_by('-pk')[:6]
 
     content = {
         'shops': shops,
@@ -42,7 +42,7 @@ def shop(request, shop_name):
         shops = get_shops_menu()
 
         # получаем все активные каталоги магазина
-        card_active = Catalog.objects.filter(is_active=True, shop=data_page.pk).order_by('-add_datetime')
+        card_active = Catalog.objects.filter(is_active=True, shop=data_page.pk).order_by('-pk')
 
         content = {
             'data_page': data_page,
@@ -58,7 +58,7 @@ def shop(request, shop_name):
 
 def catalog_page(request, shop_name, catalog_name):
     # выводит каталог по id
-    data_page = get_object_or_404(Catalog, name=catalog_name)
+    data_page = get_object_or_404(Catalog, shop__name=shop_name, name=catalog_name)
 
     if data_page.is_active and data_page.shop.is_active:
         # загружает магазины для меню
@@ -68,7 +68,7 @@ def catalog_page(request, shop_name, catalog_name):
         picture = PictureCatalog.objects.filter(catalog__pk=data_page.pk, is_active=True).order_by('image_alt')
 
         # получаем все активные каталоги магазина
-        card_active = Catalog.objects.filter(shop=data_page.shop, is_active=True).order_by('-add_datetime')
+        card_active = Catalog.objects.filter(shop=data_page.shop, is_active=True).order_by('-pk')
 
         content = {
             'shops': shops,
@@ -77,7 +77,7 @@ def catalog_page(request, shop_name, catalog_name):
             'card_active': card_active,
         }
     elif data_page.shop.is_active:
-        card_active = Catalog.objects.filter(is_active=True, shop=data_page.shop, category=data_page.category).order_by('-add_datetime').first()
+        card_active = Catalog.objects.filter(is_active=True, shop=data_page.shop, category=data_page.category).order_by('-pk').first()
         if card_active:
             return HttpResponseRedirect(reverse('main:catalog_page', args=(card_active.shop.name, card_active.name)))
         else:
